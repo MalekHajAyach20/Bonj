@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:  # ⬅️ Permet d'exécuter manuellement
+  workflow_dispatch:  # Permet d'exécuter le workflow manuellement si besoin
 
 jobs:
   test:
@@ -21,8 +21,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Donner les permissions aux binaires Jest
+        run: chmod +x node_modules/.bin/jest
+
       - name: Run tests
-        run: npx jest
+        run: npm test
 
   prepare_deployment:
     needs: test
@@ -34,7 +37,7 @@ jobs:
   deploy:
     needs: prepare_deployment
     runs-on: ubuntu-latest
-    environment: production  # ⬅️ Active une validation manuelle sur GitHub
+    environment: production  # Active une validation manuelle sur GitHub
     steps:
-      - name: Attendre validation manuelle
+      - name: Validation manuelle requise avant déploiement
         run: echo "⚠️ Veuillez approuver le déploiement sur GitHub Actions."
