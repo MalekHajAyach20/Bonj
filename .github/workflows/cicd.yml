@@ -37,7 +37,6 @@ jobs:
   deploy:
     needs: prepare_deployment
     runs-on: ubuntu-latest
-    environment: production  # Active une validation manuelle sur GitHub
     steps:
-      - name: Validation manuelle requise avant déploiement
-        run: echo "⚠️ Veuillez approuver le déploiement sur GitHub Actions."
+      - name: Déploiement automatique en cours...
+        run: echo "🚀 Déploiement en production !"
