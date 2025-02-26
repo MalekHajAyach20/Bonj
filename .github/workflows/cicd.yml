@@ -23,7 +23,7 @@ jobs:
       - name: Run tests
         run: npx jest
 
-  prepare_deployment:
+    prepare_deployment:
     needs: test
     runs-on: ubuntu-latest
     steps:
@@ -33,7 +33,7 @@ jobs:
       - name: Préparer le déploiement
         run: echo "Version prête à être déployée !"
 
-      - name: Attendre une validation avant de déployer
+      - name: Attente de validation humaine
         uses: hmarr/auto-approve-action@v3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
