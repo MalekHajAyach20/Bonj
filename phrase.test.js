@@ -5,5 +5,5 @@ test('Le mot "bonjour" est dans la phrase', () => {
 });
 
 test('Le mot "bonjour" n\'est pas dans la phrase', () => {
-    expect(verifierPhrase(" tout le monde")).toBe("❌ Mot non trouvé");
+    expect(verifierPhrase(" bonjour tout le monde")).toBe("❌ Mot non trouvé");
 });
