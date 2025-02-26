@@ -23,17 +23,18 @@ jobs:
       - name: Run tests
         run: npx jest
 
-    prepare_deployment:
+  prepare_deployment:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
       - name: Préparer le déploiement
         run: echo "Version prête à être déployée !"
 
-      - name: Attente de validation humaine
-        uses: hmarr/auto-approve-action@v3
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+  deploy:
+    needs: prepare_deployment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validation manuelle requise avant déploiement
+        run: |
+          echo "ATTENTE DE VALIDATION HUMAINE"
+          sleep 60  # Simule une attente (remplace par une vraie validation)
