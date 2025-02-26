@@ -1,9 +1,10 @@
-name: CD Pipeline
+name: CI/CD Pipeline
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:  # ⬅️ Permet d'exécuter manuellement
 
 jobs:
   test:
@@ -33,8 +34,7 @@ jobs:
   deploy:
     needs: prepare_deployment
     runs-on: ubuntu-latest
+    environment: production  # ⬅️ Active une validation manuelle sur GitHub
     steps:
-      - name: Validation manuelle requise avant déploiement
-        run: |
-          echo "ATTENTE DE VALIDATION HUMAINE"
-          sleep 60  # Simule une attente (remplace par une vraie validation)
+      - name: Attendre validation manuelle
+        run: echo "⚠️ Veuillez approuver le déploiement sur GitHub Actions."
